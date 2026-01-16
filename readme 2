@@ -1,0 +1,59 @@
+README: ZLT S50 Carrier Update Configuration File
+File Overview
+
+File Name: S50-SC001-UP_3.0.13.xtcf.conf 
+
+username and passwords:
+
+admin/admin
+senior/123456
+gztzadmin/83583000(not working)
+
+Target Device: Tozed/ZLT S50 
+
+
+
+Configuration Version: 3.0.13 
+
+
+
+Carrier Profile: SC001 (Safaricom) 
+
+
+
+File Format: XTCF (Encrypted Tozed Configuration File) 
+
+
+Technical Description
+This is a specific carrier-level update file designed to push configuration changes to a ZLT S50 device already running the SC001 profile. It uses the proprietary XTCF format, which is an encrypted binary blob.
+
+
+
+Encryption & Security: The file begins with the XTCF magic header. It is encrypted to prevent manual tampering and is designed to be decrypted only by the router's internal configloader utility.
+
+
+
+
+Model Validation: The configloader binary contains strict logic to verify the customer_code and model_code (e.g., TZKW0000) within these files. If you attempt to upload this to a different hardware revision, the router will reject it with a 9003 error.
+
+Purpose: This file likely contains updated network parameters, such as:
+
+APN Settings: Specific access point names for Safaricom data services.
+
+TR-069 ACS URL: The address for the carrier's Auto-Configuration Server.
+
+
+Band Locking: Preferred LTE/WCDMA frequencies optimized for the SC001 network.
+
+Usage & Troubleshooting
+
+Application: This file is typically pushed via an ACS (like GenieACS) or uploaded through the "Config Update" section of the router's web interface.
+
+
+Verification: The configUpdate.js file indicates that after a successful upload, the system may require a reboot and can trigger a RESTORE_DEFAULT command to apply the new settings.
+
+
+Integrity: If the file size or checksum is incorrect, the configloader will report that it "fail to parse xtcf file".
+
+Warning
+Because this file is tied to the SC001 customer profile, applying it to a router with a different profile (like a standard Airtel or Dialog variant) may lock the device to Safaricom settings or cause a configuration mismatch.
