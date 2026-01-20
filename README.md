@@ -4,7 +4,6 @@ File Overview
 File Name: cfg_export_config_file.conf 
 
 
-
 Target Device: Tozed/ZLT S50 (Dialog Axiata variant) 
 
 
